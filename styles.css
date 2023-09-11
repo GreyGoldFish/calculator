@@ -1,5 +1,6 @@
 #display {
     border: 1px solid black;
+    min-height: 64px;
     padding-right: 8px;
 }
 
