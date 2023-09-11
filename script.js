@@ -1,5 +1,12 @@
 let operator, num1, num2;
 
+window.onload = main;
+
+
+function main() {
+    
+}
+
 
 function operate(operator, num1, num2) {
     switch (operator) {

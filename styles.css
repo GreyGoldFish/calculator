@@ -1,0 +1,24 @@
+#display {
+    border: 1px solid black;
+    padding-right: 8px;
+}
+
+#display p {
+    text-align: right;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 256px;
+}
+
+.row{
+    display: flex;
+    padding: 4px;
+    gap: 8px;
+}
+
+.row button {
+    flex: 1;
+}
