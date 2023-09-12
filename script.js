@@ -1,8 +1,4 @@
-let operation = {
-    operator: "",
-    num1: 0,
-    num2: 0,
-}
+let operation = []
 let displayValue = "";
 
 window.onload = main;
@@ -23,7 +19,7 @@ function main() {
 }
 
 
-function operate(operator, num1, num2) {
+function operate(num1, operator, num2) {
     let result;
 
     switch (operator) {
@@ -77,15 +73,18 @@ function updateDisplay() {
 function operationClickListener(event) {
     const operator = event.target.innerHTML;
 
-    if (operator === "=") {
-        operation.num2 = parseInt(displayValue);
-        displayValue = operate(operation.operator, operation.num1, operation.num2);
+    operation.push(parseInt(displayValue));
+
+    displayValue = "";
+    
+    // Checks for both cases of end of operation, i.e. 'num1 + num2' OR 'num1 ='.
+    if (operation.length === 3 || operator === "=") {
+        // Collapses the array with the result of the operation.
+        operation.splice(0, 3, operate(operation[0], operation[1], operation[2]));
+        displayValue = operation[0];
     }
-    else {
-        operation.num1 = parseInt(displayValue);
-        operation.operator = operator;
-        displayValue = "";
-    }
+    
+    operation.push(operator);
 
     updateDisplay();
 }
@@ -93,6 +92,11 @@ function operationClickListener(event) {
 
 function digitClickListener(event) {
     const digit = event.target.innerHTML
+
+    // Checks if operation is waiting for second number and resets the display.
+    if (operation.length === 2) {
+        displayValue = "";
+    }
 
     displayValue += digit;
 
