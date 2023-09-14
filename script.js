@@ -5,6 +5,7 @@ const operators = {
     '-': (num1, num2) => num1 - num2,
     '*': (num1, num2) => num1 * num2,
     '/': (num1, num2) => num1 / num2,
+    '=': (num1, _num2) => num1
 };
 
 let operation = []
@@ -57,6 +58,10 @@ function operatorButtonClickListener(event) {
     }
 
     const num = parseFloat(displayText.innerHTML);
+
+    if (isNaN(num)) {
+        return;
+    }
 
     operation.push(num);
     
