@@ -14,11 +14,11 @@ window.onload = main;
 
 
 function main() {
-    const displayText = document.querySelector("#display-text");
+    const operationText = document.querySelector("#operation-text");
     const digits = document.querySelectorAll(".digit");
     const operatorButtons = document.querySelectorAll(".operator");
 
-    displayText.innerHTML = "";
+    operationText.setHTML("");
     digits.forEach(digit => {
         digit.addEventListener("click", digitClickListener);
     });
@@ -42,22 +42,22 @@ function evaluateOperation() {
 
 
 function operatorButtonClickListener(event) {
-    const displayText = document.querySelector("#display-text");
+    const operationText = document.querySelector("#operation-text");
     const operator = event.target.innerHTML;
 
     if (operator === "AC") {
-        displayText.setHTML("");
+        operationText.setHTML("");
         operation = [];
         return;
     }
     else if (operator === "DEL") {
         if (operation.length === 0) {
-            displayText.setHTML(displayText.innerHTML.slice(0, -1));
+            operationText.setHTML(operationText.innerHTML.slice(0, -1));
         }
         return;
     }
 
-    const num = parseFloat(displayText.innerHTML);
+    const num = parseFloat(operationText.innerHTML);
 
     if (isNaN(num)) {
         return;
@@ -67,11 +67,11 @@ function operatorButtonClickListener(event) {
     
     // If operation is complete, evaluate it
     if (operation.length === 3) {
-        displayText.setHTML(evaluateOperation());
+        operationText.setHTML(evaluateOperation());
     }
-    // Otherwise, clear the display for the next number
+    // Otherwise, clear the operation for the next number
     else if (operator !== "=") {
-        displayText.setHTML("");
+        operationText.setHTML("");
     }
     
     operation.push(operator);
@@ -79,20 +79,20 @@ function operatorButtonClickListener(event) {
 
 
 function digitClickListener(event) {
-    const displayText = document.querySelector("#display-text");
+    const operationText = document.querySelector("#operation-text");
     const digit = event.target.innerHTML;
 
     // Prevent multiple decimal points in the same number
-    if (digit === "." && displayText.innerHTML.includes(".")) {
+    if (digit === "." && operationText.innerHTML.includes(".")) {
         return;
     }
 
     // Ensures that numbers are valid.
-    if (displayText.innerHTML === "0" && digit !== "."
+    if (operationText.innerHTML === "0" && digit !== "."
     // If in the middle of an operation, clear the previous evaluation.
     || operation.length === 2 && operation[1] !== "=") {
-        displayText.setHTML(digit);
+        operationText.setHTML(digit);
     } else {
-        displayText.setHTML(displayText.innerHTML + digit);
+        operationText.setHTML(operationText.innerHTML + digit);
     }
 }
