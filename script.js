@@ -18,7 +18,7 @@ function main() {
     const digits = document.querySelectorAll(".digit");
     const operatorButtons = document.querySelectorAll(".operator");
 
-    operationText.setHTML("");
+    operationText.textContent = "";
     digits.forEach(digit => {
         digit.addEventListener("click", digitClickListener);
     });
@@ -46,18 +46,18 @@ function operatorButtonClickListener(event) {
     const operator = event.target.innerHTML;
 
     if (operator === "AC") {
-        operationText.setHTML("");
+        operationText.textContent = "";
         operation = [];
         return;
     }
     else if (operator === "DEL") {
         if (operation.length === 0) {
-            operationText.setHTML(operationText.innerHTML.slice(0, -1));
+            operationText.textContent = operationText.textContent.slice(0, -1);
         }
         return;
     }
 
-    const num = parseFloat(operationText.innerHTML);
+    const num = parseFloat(operationText.textContent);
 
     if (isNaN(num)) {
         return;
@@ -67,11 +67,11 @@ function operatorButtonClickListener(event) {
     
     // If operation is complete, evaluate it
     if (operation.length === 3) {
-        operationText.setHTML(evaluateOperation());
+        operationText.textContent = evaluateOperation();
     }
     // Otherwise, clear the operation for the next number
     else if (operator !== "=") {
-        operationText.setHTML("");
+        operationText.textContent = "";
     }
     
     operation.push(operator);
@@ -80,19 +80,19 @@ function operatorButtonClickListener(event) {
 
 function digitClickListener(event) {
     const operationText = document.querySelector("#operation-text");
-    const digit = event.target.innerHTML;
+    const digit = event.target.textContent;
 
     // Prevent multiple decimal points in the same number
-    if (digit === "." && operationText.innerHTML.includes(".")) {
+    if (digit === "." && operationText.textContent.includes(".")) {
         return;
     }
 
     // Ensures that numbers are valid.
-    if (operationText.innerHTML === "0" && digit !== "."
+    if (operationText.textContent === "0" && digit !== "."
     // If in the middle of an operation, clear the previous evaluation.
     || operation.length === 2 && operation[1] !== "=") {
         operationText.setHTML(digit);
     } else {
-        operationText.setHTML(operationText.innerHTML + digit);
+        operationText.setHTML(operationText.textContent + digit);
     }
 }
