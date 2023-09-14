@@ -43,7 +43,7 @@ function evaluateOperation() {
 
 function operatorButtonClickListener(event) {
     const operationText = document.querySelector("#operation-text");
-    const operator = event.target.innerHTML;
+    const operator = event.target.textContent;
 
     if (operator === "AC") {
         operationText.textContent = "";
@@ -91,8 +91,8 @@ function digitClickListener(event) {
     if (operationText.textContent === "0" && digit !== "."
     // If in the middle of an operation, clear the previous evaluation.
     || operation.length === 2 && operation[1] !== "=") {
-        operationText.setHTML(digit);
+        operationText.textContent = digit;
     } else {
-        operationText.setHTML(operationText.textContent + digit);
+        operationText.textContent += digit;
     }
 }
