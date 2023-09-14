@@ -1,7 +1,8 @@
 #display {
-    border: 2px solid #333;
+    border: 2px solid #777;
     background-color: #f7f7f7;
     min-height: 80px;
+    margin: 8px 0;
     padding: 0 8px;
     display: flex;
     align-items: center;
@@ -30,9 +31,10 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    margin: 0 auto;
-    padding: 8px;
+    width: 512px;
+    height: 512px;
+    margin: 128px auto;
+    padding: 16px;
     background-color: #ccc;
     border: 1px solid #777;
     border-radius: 5px;
@@ -41,6 +43,7 @@
 
 .row {
     display: flex;
+    flex: 1;
     padding: 4px;
     gap: 8px;
 }

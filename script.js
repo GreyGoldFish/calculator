@@ -36,8 +36,8 @@ function operate (num1, operator, num2) {
 function evaluateOperation() {
     // Collapses the array with the result of the operation.
     operation.splice(0, 3, operate(operation[0], operation[1], operation[2]));
-    // Ensures that return only has up to 'MAX_DECIMALS' decimals.
-    return parseFloat(operation[0].toFixed(MAX_DECIMALS));
+    const result = parseFloat(operation[0].toFixed(MAX_DECIMALS));
+    return result;
 }
 
 
@@ -82,16 +82,17 @@ function digitClickListener(event) {
     const displayText = document.querySelector("#display-text");
     const digit = event.target.innerHTML;
 
-    // Ensures that numbers are valid.
-    if (displayText.innerHTML === "0" && digit !== "."
-        || displayText.innerHTML === "" && digit === ".") {
+    // Prevent multiple decimal points in the same number
+    if (digit === "." && displayText.innerHTML.includes(".")) {
         return;
     }
 
+    // Ensures that numbers are valid.
+    if (displayText.innerHTML === "0" && digit !== "."
     // If in the middle of an operation, clear the previous evaluation.
-    if (operation.length === 2) {
-        displayText.setHTML("");
+    || operation.length === 2 && operation[1] !== "=") {
+        displayText.setHTML(digit);
+    } else {
+        displayText.setHTML(displayText.innerHTML + digit);
     }
-
-    displayText.setHTML(displayText.innerHTML + digit);
 }
