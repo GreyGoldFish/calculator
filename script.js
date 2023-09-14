@@ -45,13 +45,13 @@ function operatorButtonClickListener(event) {
     const operator = event.target.innerHTML;
 
     if (operator === "AC") {
-        displayText.innerHTML = "";
+        displayText.setHTML("");
         operation = [];
         return;
     }
     else if (operator === "DEL") {
         if (operation.length === 0) {
-            displayText.innerHTML = displayText.innerHTML.slice(0, -1);
+            displayText.setHTML(displayText.innerHTML.slice(0, -1));
         }
         return;
     }
@@ -60,11 +60,13 @@ function operatorButtonClickListener(event) {
 
     operation.push(num);
     
+    // If operation is complete, evaluate it
     if (operation.length === 3) {
-        displayText.innerHTML = evaluateOperation();
+        displayText.setHTML(evaluateOperation());
     }
+    // Otherwise, clear the display for the next number
     else {
-        displayText.innerHTML = "";
+        displayText.setHTML("");
     }
     
     operation.push(operator);
@@ -75,9 +77,10 @@ function digitClickListener(event) {
     const displayText = document.querySelector("#display-text");
     const digit = event.target.innerHTML;
 
+    // If in the middle of an operation, clear the previous evaluation.
     if (operation.length === 2) {
-        displayText.innerHTML = "";
+        displayText.setHTML("");
     }
 
-    displayText.innerHTML += digit;
+    displayText.setHTML(displayText.innerHTML + digit);
 }
