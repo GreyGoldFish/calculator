@@ -8,7 +8,7 @@ const operators = {
     '=': (num1, _num2) => num1
 };
 
-let operation = []
+let operation = [];
 
 window.onload = main;
 
@@ -66,11 +66,12 @@ function operatorButtonClickListener(event) {
     operation.push(num);
     
     // If operation is complete, evaluate it
-    if (operation.length === 3) {
+    if (operation.length === 3 || operator === "=") {
         operationText.textContent = evaluateOperation();
+        operationEvaluated = true;
     }
     // Otherwise, clear the operation for the next number
-    else if (operator !== "=") {
+    else {
         operationText.textContent = "";
     }
     
@@ -88,11 +89,14 @@ function digitClickListener(event) {
     }
 
     // Ensures that numbers are valid.
-    if (operationText.textContent === "0" && digit !== "."
-    // If in the middle of an operation, clear the previous evaluation.
-    || operation.length === 2 && operation[1] !== "=") {
+    if ((operationText.textContent === "0") && digit !== ".") {
         operationText.textContent = digit;
-    } else {
+    }
+    else {
+        // Checks if in the middle of an operation and clears the operation text if true
+        if (operationText.textContent == operation[0]) {
+            operationText.textContent = "";
+        }
         operationText.textContent += digit;
     }
 }
