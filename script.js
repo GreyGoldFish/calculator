@@ -70,10 +70,6 @@ function operatorButtonClickListener(event) {
         operationText.textContent = evaluateOperation();
         operationEvaluated = true;
     }
-    // Otherwise, clear the operation for the next number
-    else {
-        operationText.textContent = "";
-    }
     
     operation.push(operator);
 }
