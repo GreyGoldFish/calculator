@@ -70,7 +70,7 @@ function operatorButtonClickListener(event) {
         displayText.setHTML(evaluateOperation());
     }
     // Otherwise, clear the display for the next number
-    else {
+    else if (operator !== "=") {
         displayText.setHTML("");
     }
     
