@@ -82,6 +82,12 @@ function digitClickListener(event) {
     const displayText = document.querySelector("#display-text");
     const digit = event.target.innerHTML;
 
+    // Ensures that numbers are valid.
+    if (displayText.innerHTML === "0" && digit !== "."
+        || displayText.innerHTML === "" && digit === ".") {
+        return;
+    }
+
     // If in the middle of an operation, clear the previous evaluation.
     if (operation.length === 2) {
         displayText.setHTML("");
