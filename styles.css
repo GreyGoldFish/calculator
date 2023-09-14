@@ -1,20 +1,45 @@
 #display {
-    border: 1px solid black;
-    min-height: 64px;
-    padding-right: 8px;
+    border: 2px solid #333;
+    background-color: #f7f7f7;
+    min-height: 80px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 24px;
 }
 
-#display p {
-    text-align: right;
+#operator-ac {
+    color: #eee;
+    background-color: #555;
+}
+
+#operator-ac:hover {
+    background-color: #333;
+}
+
+#operator-del {
+    background-color: #a11919;
+    color: #eee;
+}
+
+#operator-del:hover {
+    background-color: #7a0e0e;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    width: 256px;
+    width: 300px;
+    margin: 0 auto;
+    padding: 8px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.row{
+.row {
     display: flex;
     padding: 4px;
     gap: 8px;
@@ -22,4 +47,28 @@
 
 .row button {
     flex: 1;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.row .operator {
+    background-color: #777;
+    color: #eee;
+}
+
+.row button:hover {
+    background-color: #ddd;
+}
+
+.row .operator:hover {
+    background-color: #555;
+}
+
+.digit {
+    background-color: #e0e0e0;
+    color: #333;
 }
