@@ -50,7 +50,7 @@ function operatorButtonClickListener(event) {
         operation = [];
         return;
     }
-    else if (operator === "DEL") {
+    else if (operator === "CE") {
         if (operation.length === 0) {
             operationText.textContent = operationText.textContent.slice(0, -1);
         }
